@@ -19,13 +19,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Es un sistema de administracion en biblioteca correspondiente al corto 2 de TPI
 -- 
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `cortoTPI` DEFAULT CHARACTER SET cp1256 ;
-USE `cortoTPI` ;
+CREATE SCHEMA IF NOT EXISTS `cortoDosTPI` DEFAULT CHARACTER SET cp1256 ;
+USE `cortoDosTPI` ;
 
 -- -----------------------------------------------------
 -- Table `cortoTPI`.`abstractusuariodomain`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cortoTPI`.`abstractusuariodomain` (
+CREATE TABLE IF NOT EXISTS `cortoDosTPI`.`abstractusuariodomain` (
   `login` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
@@ -43,7 +43,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `cortoTPI`.`librodomain`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cortoTPI`.`librodomain` (
+CREATE TABLE IF NOT EXISTS `cortoDosTPI`.`librodomain` (
   `isbn` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(45) NOT NULL,
   `autor` VARCHAR(45) NOT NULL,
@@ -57,7 +57,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `cortoTPI`.`ejemplardomain`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cortoTPI`.`ejemplardomain` (
+CREATE TABLE IF NOT EXISTS `cortoDosTPI`.`ejemplardomain` (
   `idEjemplar` INT NOT NULL,
   `isbn` INT NOT NULL,
   `login` VARCHAR(45) NOT NULL,
@@ -82,12 +82,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `cortoTPI`.`prestamohistoricodomain`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cortoTPI`.`prestamohistoricodomain` (
+CREATE TABLE IF NOT EXISTS `cortoDosTPI`.`prestamohistoricodomain` (
   `idEjemplar` INT NOT NULL,
   `login` VARCHAR(45) NOT NULL,
   `fechaPrestamo` DATE NOT NULL,
   `fechaDevolucion` DATE NOT NULL,
   `fechaDevolucionReal` DATE NOT NULL,
+PRIMARY KEY (`idEjemplar`),
   FOREIGN KEY (`login`)
     REFERENCES `cortoTPI`.`abstractusuariodomain` (`login`)
     ON DELETE NO ACTION
@@ -102,13 +103,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `cortoTPI`.`reservadomain`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cortoTPI`.`reservadomain` (
+CREATE TABLE IF NOT EXISTS `cortoDosTPI`.`reservadomain` (
+  `idReserva` INT NOT NULL,
   `isbn` INT NOT NULL,
   `login` VARCHAR(45) NOT NULL,
   `fecha` DATE NOT NULL,
   `fechaFin` DATE NOT NULL,
   `tipoFinalizacion` VARCHAR(45) NOT NULL,
   `estadoHistorico` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`idReserva`),
   FOREIGN KEY (`login`)
     REFERENCES `cortoTPI`.`abstractusuariodomain` (`login`)
     ON DELETE NO ACTION
@@ -123,11 +126,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `cortoTPI`.`multadomain`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cortoTPI`.`multadomain` (
+CREATE TABLE IF NOT EXISTS `cortoDosTPI`.`multadomain` (
+    `idMulta` INT NOT NULL,
   `login` VARCHAR(45) NOT NULL,
   `fechaInicio` DATE NOT NULL,
   `fechaFin` DATE NOT NULL,
   `estadoHistorico` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`idMulta`),
   FOREIGN KEY (`login`)
     REFERENCES `cortoTPI`.`abstractusuariodomain` (`login`)
     ON DELETE NO ACTION
@@ -138,9 +143,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `cortoTPI`.`profesordomain`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cortoTPI`.`profesordomain` (
-  `login` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `cortoDosTPI`.`profesordomain` (
+  `idProfesor` INT NOT NULL,  
+`login` VARCHAR(45) NOT NULL,
   `departamento` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`idProfesor`),
  FOREIGN KEY (`login`)
     REFERENCES `cortoTPI`.`abstractusuariodomain` (`login`)
     ON DELETE NO ACTION
@@ -151,8 +158,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `cortoTPI`.`alumnodomain`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cortoTPI`.`alumnodomain` (
-  `login` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `cortoDosTPI`.`alumnodomain` (
+  `idAlumno` INT NOT NULL,
+`login` VARCHAR(45) NOT NULL,
+`tutor` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`idAlumno`),
   FOREIGN KEY (`login`)
     REFERENCES `cortoTPI`.`abstractusuariodomain` (`login`)
     ON DELETE NO ACTION
@@ -163,10 +173,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `cortoTPI`.`bibliotecariodomain`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cortoTPI`.`bibliotecariodomain` (
-  `login` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `cortoDosTPI`.`bibliotecariodomain` (
+`bibliotecario` INT NOT NULL,  
+`login` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `nif` INT NOT NULL)
+  `nif` INT NOT NULL,
+PRIMARY KEY (`bibliotecario`))
 ENGINE = InnoDB;
 
 
