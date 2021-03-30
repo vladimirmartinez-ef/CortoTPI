@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author edwin
+ * @author elmer_interiano
  */
 @Entity
 @Table(name = "alumnodomain", catalog = "cortoDosTPI", schema = "")
@@ -105,7 +105,7 @@ public class Alumnodomain implements Serializable {
 
     @Override
     public String toString() {
-        return "prueba.data.corto2.Alumnodomain[ idAlumno=" + idAlumno + " ]";
+        return "prueba.data.corto2.entitys.Alumnodomain[ idAlumno=" + idAlumno + " ]";
     }
     
 }

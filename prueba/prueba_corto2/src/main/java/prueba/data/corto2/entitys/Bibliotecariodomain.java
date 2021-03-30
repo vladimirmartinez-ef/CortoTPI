@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author edwin
+ * @author elmer_interiano
  */
 @Entity
 @Table(name = "bibliotecariodomain", catalog = "cortoDosTPI", schema = "")
@@ -119,7 +119,7 @@ public class Bibliotecariodomain implements Serializable {
 
     @Override
     public String toString() {
-        return "prueba.data.corto2.Bibliotecariodomain[ bibliotecario=" + bibliotecario + " ]";
+        return "prueba.data.corto2.entitys.Bibliotecariodomain[ bibliotecario=" + bibliotecario + " ]";
     }
     
 }

@@ -16,12 +16,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
- * @author edwin
+ * @author elmer_interiano
  */
 @Entity
 @Table(name = "prestamohistoricodomain", catalog = "cortoDosTPI", schema = "")
@@ -37,26 +35,20 @@ public class Prestamohistoricodomain implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idEjemplar", nullable = false)
     private Integer idEjemplar;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "login", nullable = false, length = 45)
     private String login;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "fechaPrestamo", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaPrestamo;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "fechaDevolucion", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaDevolucion;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "fechaDevolucionReal", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaDevolucionReal;
@@ -138,7 +130,7 @@ public class Prestamohistoricodomain implements Serializable {
 
     @Override
     public String toString() {
-        return "prueba.data.corto2.Prestamohistoricodomain[ idEjemplar=" + idEjemplar + " ]";
+        return "prueba.data.corto2.entitys.Prestamohistoricodomain[ idEjemplar=" + idEjemplar + " ]";
     }
     
 }

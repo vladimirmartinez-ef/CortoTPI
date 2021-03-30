@@ -16,12 +16,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
- * @author edwin
+ * @author elmer_interiano
  */
 @Entity
 @Table(name = "multadomain", catalog = "cortoDosTPI", schema = "")
@@ -37,27 +35,20 @@ public class Multadomain implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idMulta", nullable = false)
     private Integer idMulta;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "login", nullable = false, length = 45)
     private String login;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "fechaInicio", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "fechaFin", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "estadoHistorico", nullable = false, length = 45)
     private String estadoHistorico;
 
@@ -138,7 +129,7 @@ public class Multadomain implements Serializable {
 
     @Override
     public String toString() {
-        return "prueba.data.corto2.Multadomain[ idMulta=" + idMulta + " ]";
+        return "prueba.data.corto2.entitys.Multadomain[ idMulta=" + idMulta + " ]";
     }
     
 }

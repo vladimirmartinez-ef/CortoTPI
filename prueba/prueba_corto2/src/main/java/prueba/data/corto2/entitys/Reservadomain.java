@@ -16,12 +16,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
- * @author edwin
+ * @author elmer_interiano
  */
 @Entity
 @Table(name = "reservadomain", catalog = "cortoDosTPI", schema = "")
@@ -39,36 +37,26 @@ public class Reservadomain implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idReserva", nullable = false)
     private Integer idReserva;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "isbn", nullable = false)
     private int isbn;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "login", nullable = false, length = 45)
     private String login;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "fechaFin", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "tipoFinalizacion", nullable = false, length = 45)
     private String tipoFinalizacion;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "estadoHistorico", nullable = false, length = 45)
     private String estadoHistorico;
 
@@ -167,7 +155,7 @@ public class Reservadomain implements Serializable {
 
     @Override
     public String toString() {
-        return "prueba.data.corto2.Reservadomain[ idReserva=" + idReserva + " ]";
+        return "prueba.data.corto2.entitys.Reservadomain[ idReserva=" + idReserva + " ]";
     }
     
 }

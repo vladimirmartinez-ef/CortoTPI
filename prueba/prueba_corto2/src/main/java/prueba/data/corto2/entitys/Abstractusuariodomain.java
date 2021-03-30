@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author edwin
+ * @author elmer_interiano
  */
 @Entity
 @Table(name = "abstractusuariodomain", catalog = "cortoDosTPI", schema = "")
@@ -207,7 +207,7 @@ public class Abstractusuariodomain implements Serializable {
 
     @Override
     public String toString() {
-        return "prueba.data.corto2.Abstractusuariodomain[ login=" + login + " ]";
+        return "prueba.data.corto2.entitys.Abstractusuariodomain[ login=" + login + " ]";
     }
     
 }

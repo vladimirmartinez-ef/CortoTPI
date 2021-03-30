@@ -13,12 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
- * @author edwin
+ * @author elmer_interiano
  */
 @Entity
 @Table(name = "profesordomain", catalog = "cortoDosTPI", schema = "")
@@ -32,17 +30,12 @@ public class Profesordomain implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idProfesor", nullable = false)
     private Integer idProfesor;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "login", nullable = false, length = 45)
     private String login;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "departamento", nullable = false, length = 45)
     private String departamento;
 
@@ -105,7 +98,7 @@ public class Profesordomain implements Serializable {
 
     @Override
     public String toString() {
-        return "prueba.data.corto2.Profesordomain[ idProfesor=" + idProfesor + " ]";
+        return "prueba.data.corto2.entitys.Profesordomain[ idProfesor=" + idProfesor + " ]";
     }
     
 }
