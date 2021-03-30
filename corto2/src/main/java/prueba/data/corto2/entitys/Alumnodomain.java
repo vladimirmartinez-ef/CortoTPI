@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prueba.data.corto2;
+package prueba.data.corto2.entitys;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -13,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author vladimir
+ * @author edwin
  */
 @Entity
 @Table(name = "alumnodomain", catalog = "cortoDosTPI", schema = "")
@@ -30,13 +32,18 @@ public class Alumnodomain implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "idAlumno")
+    @NotNull
+    @Column(name = "idAlumno", nullable = false)
     private Integer idAlumno;
     @Basic(optional = false)
-    @Column(name = "login")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "login", nullable = false, length = 45)
     private String login;
     @Basic(optional = false)
-    @Column(name = "tutor")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "tutor", nullable = false, length = 45)
     private String tutor;
 
     public Alumnodomain() {

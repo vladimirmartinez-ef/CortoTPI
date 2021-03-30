@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prueba.data.corto2;
+package prueba.data.corto2.entitys;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,10 +16,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author vladimir
+ * @author edwin
  */
 @Entity
 @Table(name = "ejemplardomain", catalog = "cortoDosTPI", schema = "")
@@ -39,33 +41,45 @@ public class Ejemplardomain implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "idEjemplar")
+    @NotNull
+    @Column(name = "idEjemplar", nullable = false)
     private Integer idEjemplar;
     @Basic(optional = false)
-    @Column(name = "isbn")
+    @NotNull
+    @Column(name = "isbn", nullable = false)
     private int isbn;
     @Basic(optional = false)
-    @Column(name = "login")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "login", nullable = false, length = 45)
     private String login;
     @Basic(optional = false)
-    @Column(name = "fechaAdquisicion")
+    @NotNull
+    @Column(name = "fechaAdquisicion", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaAdquisicion;
-    @Column(name = "observaciones")
+    @Size(max = 45)
+    @Column(name = "observaciones", length = 45)
     private String observaciones;
     @Basic(optional = false)
-    @Column(name = "fechaPrestamo")
+    @NotNull
+    @Column(name = "fechaPrestamo", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaPrestamo;
     @Basic(optional = false)
-    @Column(name = "fechaDevolucion")
+    @NotNull
+    @Column(name = "fechaDevolucion", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaDevolucion;
     @Basic(optional = false)
-    @Column(name = "estadoEjemplar")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "estadoEjemplar", nullable = false, length = 45)
     private String estadoEjemplar;
     @Basic(optional = false)
-    @Column(name = "localizacion")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "localizacion", nullable = false, length = 45)
     private String localizacion;
 
     public Ejemplardomain() {

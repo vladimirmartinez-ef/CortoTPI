@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prueba.data.corto2;
+package prueba.data.corto2.entitys;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -13,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author vladimir
+ * @author edwin
  */
 @Entity
 @Table(name = "abstractusuariodomain", catalog = "cortoDosTPI", schema = "")
@@ -37,33 +39,51 @@ public class Abstractusuariodomain implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "login")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "login", nullable = false, length = 45)
     private String login;
     @Basic(optional = false)
-    @Column(name = "password")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "password", nullable = false, length = 45)
     private String password;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
-    @Column(name = "email")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "email", nullable = false, length = 45)
     private String email;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "nombre", nullable = false, length = 45)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "apellido1")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "apellido1", nullable = false, length = 45)
     private String apellido1;
     @Basic(optional = false)
-    @Column(name = "apellido2")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "apellido2", nullable = false, length = 45)
     private String apellido2;
     @Column(name = "estadoUsuario")
     private Short estadoUsuario;
     @Basic(optional = false)
-    @Column(name = "direccion")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "direccion", nullable = false, length = 45)
     private String direccion;
     @Basic(optional = false)
-    @Column(name = "ciudad")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "ciudad", nullable = false, length = 45)
     private String ciudad;
     @Basic(optional = false)
-    @Column(name = "codigoPostal")
+    @NotNull
+    @Column(name = "codigoPostal", nullable = false)
     private int codigoPostal;
 
     public Abstractusuariodomain() {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prueba.data.corto2;
+package prueba.data.corto2.entitys;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,10 +16,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author vladimir
+ * @author edwin
  */
 @Entity
 @Table(name = "reservadomain", catalog = "cortoDosTPI", schema = "")
@@ -37,27 +39,37 @@ public class Reservadomain implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "idReserva")
+    @NotNull
+    @Column(name = "idReserva", nullable = false)
     private Integer idReserva;
     @Basic(optional = false)
-    @Column(name = "isbn")
+    @NotNull
+    @Column(name = "isbn", nullable = false)
     private int isbn;
     @Basic(optional = false)
-    @Column(name = "login")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "login", nullable = false, length = 45)
     private String login;
     @Basic(optional = false)
-    @Column(name = "fecha")
+    @NotNull
+    @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
-    @Column(name = "fechaFin")
+    @NotNull
+    @Column(name = "fechaFin", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
     @Basic(optional = false)
-    @Column(name = "tipoFinalizacion")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "tipoFinalizacion", nullable = false, length = 45)
     private String tipoFinalizacion;
     @Basic(optional = false)
-    @Column(name = "estadoHistorico")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "estadoHistorico", nullable = false, length = 45)
     private String estadoHistorico;
 
     public Reservadomain() {

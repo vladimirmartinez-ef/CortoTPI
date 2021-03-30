@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prueba.data.corto2;
+package prueba.data.corto2.entitys;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,10 +18,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author vladimir
+ * @author edwin
  */
 @Entity
 @Table(name = "librodomain", catalog = "cortoDosTPI", schema = "")
@@ -39,23 +41,30 @@ public class Librodomain implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "isbn")
+    @Column(name = "isbn", nullable = false)
     private Integer isbn;
     @Basic(optional = false)
-    @Column(name = "titulo")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "titulo", nullable = false, length = 45)
     private String titulo;
     @Basic(optional = false)
-    @Column(name = "autor")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "autor", nullable = false, length = 45)
     private String autor;
     @Basic(optional = false)
-    @Column(name = "numPaginas")
+    @NotNull
+    @Column(name = "numPaginas", nullable = false)
     private int numPaginas;
     @Basic(optional = false)
-    @Column(name = "fechaAlta")
+    @NotNull
+    @Column(name = "fechaAlta", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaAlta;
     @Basic(optional = false)
-    @Column(name = "numDisponibles")
+    @NotNull
+    @Column(name = "numDisponibles", nullable = false)
     private int numDisponibles;
 
     public Librodomain() {
