@@ -91,14 +91,6 @@ public class AbstractusuariodomainJpaControllerTest {
         //Abstractusuariodomain mockR = Mockito.mock(Abstractusuariodomain.class);
         cut.create(r);
         Mockito.verify(mockEm, Mockito.times(1)).persist(Mockito.any());
-        //error exception
-        try {
-            Mockito.doThrow(PreexistingEntityException.class).when(mockEm).persist(Mockito.any());
-            Mockito.when(cut.findAbstractusuariodomain(Mockito.any())).thenReturn(r);
-            cut.create(r);
-        } catch (Exception e) {
-
-        }
         // TODO review the generated test code and remove the default call to fail.
         //fail("Dara error por que asi dice aqui");
     }
@@ -175,11 +167,6 @@ public class AbstractusuariodomainJpaControllerTest {
      * Test of getAbstractusuariodomainCount method, of class
      * AbstractusuariodomainJpaController.
      */
-    @Test
-    public void testGetAbstractusuariodomainCount() {
-        System.out.println("getAbstractusuariodomainCount");
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
+    
 
 }

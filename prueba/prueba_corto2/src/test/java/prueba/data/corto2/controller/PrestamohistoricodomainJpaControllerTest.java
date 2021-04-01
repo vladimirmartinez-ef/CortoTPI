@@ -203,28 +203,6 @@ public class PrestamohistoricodomainJpaControllerTest {
     /**
      * Test of getPrestamohistoricodomainCount method, of class PrestamohistoricodomainJpaController.
      */
-    @Test
-    public void testGetPrestamohistoricodomainCount() {
-        System.out.println("getPrestamohistoricodomainCount");
-        Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
-       CriteriaQuery mockCRQ= Mockito.mock(CriteriaQuery.class);
-        CriteriaBuilder mockCRBDR= Mockito.mock(CriteriaBuilder.class);
-        Mockito.when(mockEm.getCriteriaBuilder()).thenReturn(mockCRBDR);
-        Mockito.when(mockCRBDR.createQuery()).thenReturn(mockCRQ);
-        Root<Prestamohistoricodomain> mockROOT = Mockito.mock(Root.class);
-        Mockito.when(mockCRQ.from(Prestamohistoricodomain.class)).thenReturn(mockROOT);
-        Expression mockEXP= Mockito.mock(Expression.class);
-        Mockito.when(mockCRBDR.count(mockROOT)).thenReturn(mockEXP);
-        
-        Mockito.when(mockCRQ.select(mockEXP)).thenReturn(mockCRQ);
-        TypedQuery mockQR = Mockito.mock(TypedQuery.class);
-        Mockito.when(mockEm.createQuery(mockCRQ)).thenReturn(mockQR);
-        Query mockQRY= Mockito.mock(Query.class);
-        Object mockOBJ= Mockito.mock(Object.class);
-        Mockito.when(((Long) mockQR.getSingleResult()).intValue()).thenReturn(25);
-        cut.getPrestamohistoricodomainCount();
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
+   
     
 }
