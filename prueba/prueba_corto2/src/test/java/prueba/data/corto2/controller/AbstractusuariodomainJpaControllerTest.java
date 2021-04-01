@@ -9,6 +9,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Root;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import prueba.data.corto2.controller.exceptions.PreexistingEntityException;
 import prueba.data.corto2.entitys.Abstractusuariodomain;
 
 /**
@@ -83,7 +90,14 @@ public class AbstractusuariodomainJpaControllerTest {
         //Abstractusuariodomain mockR = Mockito.mock(Abstractusuariodomain.class);
         cut.create(r);
         Mockito.verify(mockEm, Mockito.times(1)).persist(Mockito.any());
-        
+        //error exception
+        try{
+            Mockito.doThrow(PreexistingEntityException.class).when(mockEm).persist(Mockito.any());
+            Mockito.when(cut.findAbstractusuariodomain(Mockito.any())).thenReturn(r);
+            cut.create(r);
+        }catch(Exception e){
+            
+        }
         // TODO review the generated test code and remove the default call to fail.
         //fail("Dara error por que asi dice aqui");
     }
@@ -113,5 +127,70 @@ public class AbstractusuariodomainJpaControllerTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("Dara error por que asi dice aqui");
     }
+    
+    @Test
+    public void testFindAbstractusuariodomainEntities() throws Exception{
+        System.out.println("findAbstractusuariodomainEntities");
+        List<Abstractusuariodomain> l= Mockito.mock(List.class);
+        Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
+        CriteriaQuery mockCRQ= Mockito.mock(CriteriaQuery.class);
+        CriteriaBuilder mockCRBDR= Mockito.mock(CriteriaBuilder.class);
+        Mockito.when(mockEm.getCriteriaBuilder()).thenReturn(mockCRBDR);
+        Mockito.when(mockCRBDR.createQuery()).thenReturn(mockCRQ);
+        Root mockROOT = Mockito.mock(Root.class);
+        Mockito.when(mockCRQ.from(Abstractusuariodomain.class)).thenReturn(mockROOT);
+        TypedQuery mockQR = Mockito.mock(TypedQuery.class);
+        Mockito.when(mockEm.createQuery(mockCRQ)).thenReturn(mockQR);
+        Query mockQRY= Mockito.mock(Query.class);
+        cut.findAbstractusuariodomainEntities();
+    }
+    
+   
+   @Test
+    public void testFindAbstractusuariodomainEntities_int_int() throws Exception{
+        System.out.println("findAbstractusuariodomainEntities_int_int");
+        List<Abstractusuariodomain> l= Mockito.mock(List.class);
+        Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
+        CriteriaQuery mockCRQ= Mockito.mock(CriteriaQuery.class);
+        CriteriaBuilder mockCRBDR= Mockito.mock(CriteriaBuilder.class);
+        Mockito.when(mockEm.getCriteriaBuilder()).thenReturn(mockCRBDR);
+        Mockito.when(mockCRBDR.createQuery()).thenReturn(mockCRQ);
+        Root mockROOT = Mockito.mock(Root.class);
+        Mockito.when(mockCRQ.from(Abstractusuariodomain.class)).thenReturn(mockROOT);
+        TypedQuery mockQR = Mockito.mock(TypedQuery.class);
+        Mockito.when(mockEm.createQuery(mockCRQ)).thenReturn(mockQR);
+        cut.findAbstractusuariodomainEntities(100, 1);
+    }  
+    
+   @Test
+   public void testFindAbstractusuariodomain(){
+       System.out.println("findAbstractusuariodomain");
+       Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
+       Abstractusuariodomain mockR= Mockito.mock(Abstractusuariodomain.class);
+       Mockito.when(mockEm.find(Abstractusuariodomain.class, "hola")).thenReturn(mockR);
+       cut.findAbstractusuariodomain("hola");
+   }
+   
+   @Test
+   public void testGetAbstractusuariodomainCount(){
+//       System.out.println("getAbstractusuariodomainCount");
+//       Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
+//       CriteriaQuery mockCRQ= Mockito.mock(CriteriaQuery.class);
+//        CriteriaBuilder mockCRBDR= Mockito.mock(CriteriaBuilder.class);
+//        Mockito.when(mockEm.getCriteriaBuilder()).thenReturn(mockCRBDR);
+//        Mockito.when(mockCRBDR.createQuery()).thenReturn(mockCRQ);
+//        Root<Abstractusuariodomain> mockROOT = Mockito.mock(Root.class);
+//        Mockito.when(mockCRQ.from(Abstractusuariodomain.class)).thenReturn(mockROOT);
+//        Expression mockEXP= Mockito.mock(Expression.class);
+//        Mockito.when(mockCRBDR.count(mockROOT)).thenReturn(mockEXP);
+//        
+//        Mockito.when(mockCRQ.select(mockEXP)).thenReturn(mockCRQ);
+//        TypedQuery mockQR = Mockito.mock(TypedQuery.class);
+//        Mockito.when(mockEm.createQuery(mockCRQ)).thenReturn(mockQR);
+//        Query mockQRY= Mockito.mock(Query.class);
+//        Object mockOBJ= Mockito.mock(Object.class);
+//        Mockito.when(((Long) mockQR.getSingleResult()).intValue()).thenReturn(25);
+//        cut.getAbstractusuariodomainCount();
+   }
     
 }
