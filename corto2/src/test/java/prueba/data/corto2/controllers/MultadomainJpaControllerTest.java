@@ -19,26 +19,26 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import prueba.data.corto2.entitys.Librodomain;
+import prueba.data.corto2.entitys.Multadomain;
 
 /**
  *
  * @author kenia
  */
 @ExtendWith(MockitoExtension.class)
-public class LibrodomainJpaControllerTest {
+public class MultadomainJpaControllerTest {
 
     EntityManager mockEm = Mockito.mock(EntityManager.class);
     EntityTransaction mockTX = Mockito.mock(EntityTransaction.class);
     final static EntityManagerFactory mockEmf = Mockito.mock(EntityManagerFactory.class);
 
-    LibrodomainJpaController cut = new LibrodomainJpaController(mockEmf);
+    MultadomainJpaController cut = new MultadomainJpaController(mockEmf);
 
-    public LibrodomainJpaControllerTest() {
+    public MultadomainJpaControllerTest() {
     }
 
     /**
-     * Test of getEntityManager method, of class LibrodomainJpaController.
+     * Test of getEntityManager method, of class MultadomainJpaController.
      */
     @Test
     public void testGetEntityManager() {
@@ -50,14 +50,14 @@ public class LibrodomainJpaControllerTest {
     }
 
     /**
-     * Test of create method, of class LibrodomainJpaController.
+     * Test of create method, of class MultadomainJpaController.
      */
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
         Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
         Mockito.when(mockEm.getTransaction()).thenReturn(mockTX);
-        Librodomain mockR = Mockito.mock(Librodomain.class);
+        Multadomain mockR = Mockito.mock(Multadomain.class);
         cut.create(mockR);
         Mockito.verify(mockEm, Mockito.times(1)).persist(Mockito.any());
         // TODO review the generated test code and remove the default call to fail.
@@ -65,14 +65,14 @@ public class LibrodomainJpaControllerTest {
     }
 
     /**
-     * Test of edit method, of class LibrodomainJpaController.
+     * Test of edit method, of class MultadomainJpaController.
      */
     @Test
     public void testEdit() throws Exception {
         System.out.println("edit");
         Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
         Mockito.when(mockEm.getTransaction()).thenReturn(mockTX);
-        Librodomain mockR = Mockito.mock(Librodomain.class);
+        Multadomain mockR = Mockito.mock(Multadomain.class);
         cut.edit(mockR);
         Mockito.verify(mockEm, Mockito.times(1)).merge(Mockito.any());
         // TODO review the generated test code and remove the default call to fail.
@@ -80,16 +80,16 @@ public class LibrodomainJpaControllerTest {
     }
 
     /**
-     * Test of destroy method, of class LibrodomainJpaController.
+     * Test of destroy method, of class MultadomainJpaController.
      */
     @Test
     public void testDestroy() throws Exception {
         System.out.println("destroy");
         Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
         Mockito.when(mockEm.getTransaction()).thenReturn(mockTX);
-        Librodomain mockR = Mockito.mock(Librodomain.class);
-        Mockito.when(mockEm.getReference(Librodomain.class, 3)).thenReturn(mockR);
-        Mockito.when(mockR.getIsbn()).thenReturn(3);
+        Multadomain mockR = Mockito.mock(Multadomain.class);
+        Mockito.when(mockEm.getReference(Multadomain.class, 3)).thenReturn(mockR);
+        Mockito.when(mockR.getIdMulta()).thenReturn(3);
         cut.destroy(3);
         Mockito.verify(mockEm, Mockito.times(1)).remove(Mockito.any());
         // TODO review the generated test code and remove the default call to fail.
@@ -97,62 +97,63 @@ public class LibrodomainJpaControllerTest {
     }
 
     /**
-     * Test of findLibrodomainEntities method, of class
-     * LibrodomainJpaController.
+     * Test of findMultadomainEntities method, of class
+     * MultadomainJpaController.
      */
     @Test
-    public void testFindLibrodomainEntities_0args() {
-        System.out.println("findLibrodomainEntities");
-        List<Librodomain> l = Mockito.mock(List.class);
+    public void testFindMultadomainEntities_0args() {
+        System.out.println("findMultadomainEntities");
+        List<Multadomain> l = Mockito.mock(List.class);
         Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
         CriteriaQuery mockCRQ = Mockito.mock(CriteriaQuery.class);
         CriteriaBuilder mockCRBDR = Mockito.mock(CriteriaBuilder.class);
         Mockito.when(mockEm.getCriteriaBuilder()).thenReturn(mockCRBDR);
         Mockito.when(mockCRBDR.createQuery()).thenReturn(mockCRQ);
         Root mockROOT = Mockito.mock(Root.class);
-        Mockito.when(mockCRQ.from(Librodomain.class)).thenReturn(mockROOT);
+        Mockito.when(mockCRQ.from(Multadomain.class)).thenReturn(mockROOT);
         TypedQuery mockQR = Mockito.mock(TypedQuery.class);
         Mockito.when(mockEm.createQuery(mockCRQ)).thenReturn(mockQR);
         Query mockQRY = Mockito.mock(Query.class);
-        cut.findLibrodomainEntities();
+        cut.findMultadomainEntities();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
 
     /**
-     * Test of findLibrodomainEntities method, of class
-     * LibrodomainJpaController.
+     * Test of findMultadomainEntities method, of class
+     * MultadomainJpaController.
      */
     @Test
-    public void testFindLibrodomainEntities_int_int() {
-        System.out.println("findLibrodomainEntities");
-        List<Librodomain> l = Mockito.mock(List.class);
+    public void testFindMultadomainEntities_int_int() {
+        System.out.println("findMultadomainEntities");
+        List<Multadomain> l = Mockito.mock(List.class);
         Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
         CriteriaQuery mockCRQ = Mockito.mock(CriteriaQuery.class);
         CriteriaBuilder mockCRBDR = Mockito.mock(CriteriaBuilder.class);
         Mockito.when(mockEm.getCriteriaBuilder()).thenReturn(mockCRBDR);
         Mockito.when(mockCRBDR.createQuery()).thenReturn(mockCRQ);
         Root mockROOT = Mockito.mock(Root.class);
-        Mockito.when(mockCRQ.from(Librodomain.class)).thenReturn(mockROOT);
+        Mockito.when(mockCRQ.from(Multadomain.class)).thenReturn(mockROOT);
         TypedQuery mockQR = Mockito.mock(TypedQuery.class);
         Mockito.when(mockEm.createQuery(mockCRQ)).thenReturn(mockQR);
-        cut.findLibrodomainEntities(100, 1);
+        cut.findMultadomainEntities(100, 1);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
 
     /**
-     * Test of findLibrodomain method, of class LibrodomainJpaController.
+     * Test of findMultadomain method, of class MultadomainJpaController.
      */
     @Test
-    public void testFindLibrodomain() {
-        System.out.println("findLibrodomain");
+    public void testFindMultadomain() {
+        System.out.println("findMultadomain");
         Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
-        Librodomain mockR = Mockito.mock(Librodomain.class);
-        Mockito.when(mockEm.find(Librodomain.class, 2)).thenReturn(mockR);
-        cut.findLibrodomain(2);
+        Multadomain mockR = Mockito.mock(Multadomain.class);
+        Mockito.when(mockEm.find(Multadomain.class, 2)).thenReturn(mockR);
+        cut.findMultadomain(2);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
 
+    
 }
