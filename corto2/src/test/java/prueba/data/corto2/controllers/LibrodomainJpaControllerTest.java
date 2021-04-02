@@ -14,11 +14,17 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import prueba.data.corto2.controllers.exceptions.NonexistentEntityException;
+import prueba.data.corto2.controllers.exceptions.PreexistingEntityException;
 import prueba.data.corto2.entitys.Librodomain;
 
 /**
@@ -36,7 +42,22 @@ public class LibrodomainJpaControllerTest {
 
     public LibrodomainJpaControllerTest() {
     }
+    
+   @BeforeClass
+    public static void setUpClass() {
+    }
 
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+    @Before
+    public void setUp() {
+    }
+
+    @After
+    public void tearDown() {
+    }
     /**
      * Test of getEntityManager method, of class LibrodomainJpaController.
      */
@@ -55,11 +76,19 @@ public class LibrodomainJpaControllerTest {
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
-        Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
+         Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
         Mockito.when(mockEm.getTransaction()).thenReturn(mockTX);
         Librodomain mockR = Mockito.mock(Librodomain.class);
         cut.create(mockR);
         Mockito.verify(mockEm, Mockito.times(1)).persist(Mockito.any());
+        //error
+        try {
+            Mockito.doThrow(PreexistingEntityException.class).when(mockEm).persist(Mockito.any());
+            //Mockito.when(cut.findPrestamohistoricodomain(Mockito.any())).thenReturn(mockR);
+            cut.create(mockR);
+        } catch (Exception e) {
+
+        }
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -75,6 +104,15 @@ public class LibrodomainJpaControllerTest {
         Librodomain mockR = Mockito.mock(Librodomain.class);
         cut.edit(mockR);
         Mockito.verify(mockEm, Mockito.times(1)).merge(Mockito.any());
+        //error
+        try {
+            Mockito.doThrow(NonexistentEntityException.class).when(mockEm).merge(Mockito.any());
+            //Mockito.when(cut.findPrestamohistoricodomain(null)).thenReturn(null);
+            cut.edit(mockR);
+
+        } catch (Exception e) {
+
+        }
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -88,10 +126,16 @@ public class LibrodomainJpaControllerTest {
         Mockito.when(cut.getEntityManager()).thenReturn(mockEm);
         Mockito.when(mockEm.getTransaction()).thenReturn(mockTX);
         Librodomain mockR = Mockito.mock(Librodomain.class);
-        Mockito.when(mockEm.getReference(Librodomain.class, 3)).thenReturn(mockR);
-        Mockito.when(mockR.getIsbn()).thenReturn(3);
-        cut.destroy(3);
+        Mockito.when(mockEm.getReference(Librodomain.class, 1)).thenReturn(mockR);
+        Mockito.when(mockR.getIsbn()).thenReturn(1);
+        cut.destroy(1);
         Mockito.verify(mockEm, Mockito.times(1)).remove(Mockito.any());
+        try {
+            Mockito.doThrow(NonexistentEntityException.class).when(mockEm).remove(Mockito.any());
+            cut.destroy(2);
+        } catch (Exception e) {
+
+        }
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -113,7 +157,6 @@ public class LibrodomainJpaControllerTest {
         Mockito.when(mockCRQ.from(Librodomain.class)).thenReturn(mockROOT);
         TypedQuery mockQR = Mockito.mock(TypedQuery.class);
         Mockito.when(mockEm.createQuery(mockCRQ)).thenReturn(mockQR);
-        Query mockQRY = Mockito.mock(Query.class);
         cut.findLibrodomainEntities();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
